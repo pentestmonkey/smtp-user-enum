@@ -69,7 +69,7 @@ options are:
 	-T file  File of hostnames running the smtp service
 	-p port  TCP port on which smtp service runs (default: $smtp_port)
 	-d       Debugging output
-	-t n     Wait a maximum of n seconds for reply (default: $query_timeout)
+	-w n     Wait a maximum of n seconds for reply (default: $query_timeout)
 	-v       Verbose
 	-h       This help message
 
@@ -84,7 +84,7 @@ Examples:
 
 USAGE
 
-getopts('m:u:U:s:S:r:dt:vhM:f:D:p:', \%opts);
+getopts('m:u:U:s:S:r:dt:vhM:f:D:p:w:', \%opts);
 
 # Print help message if required
 if ($opts{'h'}) {
@@ -105,6 +105,7 @@ $debug          = $opts{'d'} if $opts{'d'};
 $smtp_port      = $opts{'p'} if $opts{'p'};
 $mode           = $opts{'M'} if $opts{'M'};
 $from_address   = $opts{'f'} if $opts{'f'};
+$query_timeout  = $opts{'w'} if $opts{'w'};
 
 # Check for illegal option combinations
 unless ((defined($username) or defined($username_file)) and (defined($host) or defined($host_file))) {
